@@ -12,8 +12,6 @@ import {
 
 import {Header} from 'react-native/Libraries/NewAppScreen';
 
-import WebView from 'react-native-webview';
-
 import RNFS from 'react-native-fs';
 
 import PDFView from 'react-native-view-pdf';
@@ -131,68 +129,49 @@ const App = () => {
   };
 
   if (showWebView) {
-    console.log('====================== showWebView ======================');
+    console.log(
+      `====================== showWebView ${Platform.OS} ======================`,
+    );
     console.log('showWebView', showWebView);
     console.log('renderedOnce', renderedOnce);
-    console.log(Platform.OS);
     console.log('base64', base64);
     console.log('pathOnDevice', pathOnDevice);
 
     // const resourceType = 'file';
     const resourceType = 'url';
 
-    if (Platform.OS === 'android') {
-      return (
-        <View style={{flex: 1}}>
-          <PDFView
-            fadeInDuration={250.0}
-            style={{
-              display: 'flex',
-              flex: 1,
-              backgroundColor: loading ? '#FF0000' : '#00FF00',
-            }}
-            // resource={pathOnDevice}
-            resource={
-              'https://storage.googleapis.com/medical-reports-hml/4091623%2Fcdb%2F3-415542%2Freport.pdf?GoogleAccessId=ms-reports%40nav-hml.iam.gserviceaccount.com&Expires=1629557090&Signature=tWsXxRCLdmpR91GiicjCh78tZ3Vq2gKQBsfBBstSeyoUfNQ8GaiwXOFuP0vrnLS8aMGm%2F42us84UzfNo5yi%2F%2BOgolhjO%2FACyF6QM1nh9VD7LEHOaYOAd81H%2BKiioC9TjWlVLBMMpIxh6rEF312tdYTSPD6Ls110wjoGVHYQpFLAS2n%2Bkg%2B3B%2B83TO3E61IDcDan4FqjGSXr3vvCtJYsD%2FATio1gTl2fAngrIIKzu1QxsYAKKfZRyGUI5kmspoz8T7xCn%2BQRm6z2fxDC6m8uXndl0xP0iX749quRm5vyLtui9KvlaTWpLVAi%2FjsrwpMQWhWVjqsafIvE3DLh%2Fan9HAA%3D%3D'
-            }
-            resourceType={resourceType}
-            onLoad={() => {
-              setLoading(false);
-              console.log(`PDF rendered from ${resourceType}`);
-            }}
-            onError={error => console.log('Cannot render PDF', error)}
-          />
-          {loading && (
-            <View
-              style={{
-                position: 'absolute',
-                height: '100%',
-                width: '100%',
-                backgroundColor: '#0000FF',
-              }}>
-              <ActivityIndicator size="large" color="#FFFFFF" />
-            </View>
-          )}
-        </View>
-      );
-    }
-
     return (
-      <WebView
-        allowFileAccess
-        allowFileAccessFromFileURLs
-        allowUniversalAccessFromFileURLs
-        domStorageEnabled
-        source={{
-          uri: 'https://storage.googleapis.com/medical-reports-hml/4091623%2Fcdb%2F3-415542%2Freport.pdf?GoogleAccessId=ms-reports%40nav-hml.iam.gserviceaccount.com&Expires=1629557090&Signature=tWsXxRCLdmpR91GiicjCh78tZ3Vq2gKQBsfBBstSeyoUfNQ8GaiwXOFuP0vrnLS8aMGm%2F42us84UzfNo5yi%2F%2BOgolhjO%2FACyF6QM1nh9VD7LEHOaYOAd81H%2BKiioC9TjWlVLBMMpIxh6rEF312tdYTSPD6Ls110wjoGVHYQpFLAS2n%2Bkg%2B3B%2B83TO3E61IDcDan4FqjGSXr3vvCtJYsD%2FATio1gTl2fAngrIIKzu1QxsYAKKfZRyGUI5kmspoz8T7xCn%2BQRm6z2fxDC6m8uXndl0xP0iX749quRm5vyLtui9KvlaTWpLVAi%2FjsrwpMQWhWVjqsafIvE3DLh%2Fan9HAA%3D%3D',
-          // uri: 'https://github.com/rumax/react-native-PDFView',
-          // uri: 'http://www.africau.edu/images/default/sample.pdf',
-        }}
-        style={{flex: 1}}
-        onError={e => console.log('onError', e)}
-        onLoad={updateSource}
-        originWhitelist={['*']}
-      />
+      <View style={{flex: 1}}>
+        <PDFView
+          fadeInDuration={250.0}
+          style={{
+            display: 'flex',
+            flex: 1,
+            backgroundColor: loading ? '#FF0000' : '#00FF00',
+          }}
+          resource={
+            // pathOnDevice
+            'https://storage.googleapis.com/medical-reports-hml/4091623%2Fcdb%2F3-415542%2Freport.pdf?GoogleAccessId=ms-reports%40nav-hml.iam.gserviceaccount.com&Expires=1629557090&Signature=tWsXxRCLdmpR91GiicjCh78tZ3Vq2gKQBsfBBstSeyoUfNQ8GaiwXOFuP0vrnLS8aMGm%2F42us84UzfNo5yi%2F%2BOgolhjO%2FACyF6QM1nh9VD7LEHOaYOAd81H%2BKiioC9TjWlVLBMMpIxh6rEF312tdYTSPD6Ls110wjoGVHYQpFLAS2n%2Bkg%2B3B%2B83TO3E61IDcDan4FqjGSXr3vvCtJYsD%2FATio1gTl2fAngrIIKzu1QxsYAKKfZRyGUI5kmspoz8T7xCn%2BQRm6z2fxDC6m8uXndl0xP0iX749quRm5vyLtui9KvlaTWpLVAi%2FjsrwpMQWhWVjqsafIvE3DLh%2Fan9HAA%3D%3D'
+          }
+          resourceType={resourceType}
+          onLoad={() => {
+            setLoading(false);
+            console.log(`PDF rendered from ${resourceType}`);
+          }}
+          onError={error => console.log('Cannot render PDF', error)}
+        />
+        {loading && (
+          <View
+            style={{
+              position: 'absolute',
+              height: '100%',
+              width: '100%',
+              backgroundColor: '#0000FF',
+            }}>
+            <ActivityIndicator size="large" color="#FFFFFF" />
+          </View>
+        )}
+      </View>
     );
   }
 
@@ -209,16 +188,11 @@ const App = () => {
           <Button title="read dir" onPress={readDir} />
           <Button
             title="download PDF"
-            onPress={
-              () =>
-                downloadPDF(
-                  'https://bkt-sa-east-1-deepwater-hml-pdf.s3.sa-east-1.amazonaws.com/RDI-796101388059-1627669566206.pdf?AWSAccessKeyId=AKIAQBHT2D72PUOHBEHO&Expires=1627675566&Signature=lwboapYy7hUNzB9LIvijgY0vDuY%3D',
-                  'sample',
-                )
-              // downloadPDF(
-              //   'https://www.eurofound.europa.eu/sites/default/files/ef_publication/field_ef_document/ef1710en.pdf',
-              //   'sample',
-              // )
+            onPress={() =>
+              downloadPDF(
+                'https://www.eurofound.europa.eu/sites/default/files/ef_publication/field_ef_document/ef1710en.pdf',
+                'sample',
+              )
             }
           />
           <Button
