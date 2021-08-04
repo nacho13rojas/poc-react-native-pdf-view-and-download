@@ -322,6 +322,8 @@ PODS:
     - React
   - RNPDF (0.11.0):
     - React
+  - RNShare (7.0.0):
+    - React-Core
   - Yoga (1.14.0)
   - YogaKit (1.18.1):
     - Yoga (~> 1.14)
@@ -378,6 +380,7 @@ DEPENDENCIES:
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - RNFS (from `../node_modules/react-native-fs`)
   - RNPDF (from `../node_modules/react-native-view-pdf`)
+  - RNShare (from `../node_modules/react-native-share`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -456,6 +459,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-fs"
   RNPDF:
     :path: "../node_modules/react-native-view-pdf"
+  RNShare:
+    :path: "../node_modules/react-native-share"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -501,6 +506,7 @@ SPEC CHECKSUMS:
   ReactCommon: 149906e01aa51142707a10665185db879898e966
   RNFS: 3ab21fa6c56d65566d1fb26c2228e2b6132e5e32
   RNPDF: b575ff11a65121f346b2851e3da736e7c51c18ab
+  RNShare: 00e7409201e3cab13e0febc41fd4465a83ae8225
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
