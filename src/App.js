@@ -39,8 +39,9 @@ const App = () => {
     console.log('base64', base64);
     console.log('pathOnDevice', pathOnDevice);
 
-    const resourceType = 'file';
+    // const resourceType = 'file';
     // const resourceType = 'url';
+    const resourceType = 'base64';
 
     return (
       <View style={{flex: 1}}>
@@ -52,8 +53,9 @@ const App = () => {
             backgroundColor: loading ? '#FF0000' : '#00FF00',
           }}
           resource={
-            pathOnDevice
+            // pathOnDevice
             // pdfUrl
+            base64
           }
           resourceType={resourceType}
           onLoad={() => {

@@ -4,8 +4,9 @@ import RNFS from 'react-native-fs';
 import Share from 'react-native-share';
 
 export const readDir = (pathDir, setBase64) => {
-  console.log('======================= readDir =========================');
-  console.log(Platform.OS);
+  console.log(
+    `======================= readDir ${Platform.OS} =========================`,
+  );
   RNFS.readDir(pathDir)
     .then(result => {
       console.log('GOT RESULT', Platform.OS, result);
@@ -39,24 +40,15 @@ export const downloadPDF = async (
   setPathOnDevice,
 ) => {
   setLoading(true);
-  console.log('====================== downloadPDF ==========================');
-  console.log(Platform.OS);
+  console.log(
+    `====================== downloadPDF ${Platform.OS} ==========================`,
+  );
   const path = `${pathDir}/${fileName}.pdf`;
   console.log('PATH', path);
-
-  const headers = {
-    Accept: 'application/pdf',
-    'Content-Type': 'application/pdf',
-    Authorization: 'Bearer [token]',
-    // Authorization: 'OAUTH2_TOKEN',
-    // Authorization: 'AKIAQBHT2D72PUOHBEHO',
-    // Signature: '9Ht2BRq95nFbWncW1vmHepE9h2g',
-  };
 
   const options = {
     fromUrl: url,
     toFile: path,
-    headers: headers,
   };
 
   const response = await RNFS.downloadFile(options);
@@ -108,9 +100,9 @@ export const sharePdf = (base64, pathOnDevice) => {
   );
   console.log('base64', base64);
   console.log('pathOnDevice', pathOnDevice);
-  //   const url = Platform.OS === 'android' ? `data:application/pdf;base64,${base64}` : `file://${pathOnDevice}`
-  //   const url = `file://${pathOnDevice}`
+  // const url = `file://${pathOnDevice}`;
   const url = `data:application/pdf;base64,${base64}`;
+
   Share.open({
     url,
     filename: 'resultado',
